@@ -1,0 +1,8 @@
+C:\Users\dell\Desktop\dotnet\Souhaila-Nouinou-dotnet\ContosoUniversity\obj\Debug\net5.0\ContosoUniversity.csproj.AssemblyReference.cache
+C:\Users\dell\Desktop\dotnet\Souhaila-Nouinou-dotnet\ContosoUniversity\obj\Debug\net5.0\ContosoUniversity.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\dell\Desktop\dotnet\Souhaila-Nouinou-dotnet\ContosoUniversity\obj\Debug\net5.0\ContosoUniversity.AssemblyInfoInputs.cache
+C:\Users\dell\Desktop\dotnet\Souhaila-Nouinou-dotnet\ContosoUniversity\obj\Debug\net5.0\ContosoUniversity.AssemblyInfo.cs
+C:\Users\dell\Desktop\dotnet\Souhaila-Nouinou-dotnet\ContosoUniversity\obj\Debug\net5.0\ContosoUniversity.csproj.CoreCompileInputs.cache
+C:\Users\dell\Desktop\dotnet\Souhaila-Nouinou-dotnet\ContosoUniversity\obj\Debug\net5.0\ContosoUniversity.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\dell\Desktop\dotnet\Souhaila-Nouinou-dotnet\ContosoUniversity\obj\Debug\net5.0\ContosoUniversity.RazorAssemblyInfo.cache
+C:\Users\dell\Desktop\dotnet\Souhaila-Nouinou-dotnet\ContosoUniversity\obj\Debug\net5.0\ContosoUniversity.RazorAssemblyInfo.cs
