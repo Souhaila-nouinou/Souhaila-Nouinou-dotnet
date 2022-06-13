@@ -21,22 +21,22 @@ namespace ContosoUniversity.Pages.Students
 
         public IActionResult OnGet()
         {
+            Student = new Student { EnrollmentDate = DateTime.Now, FirstMidName = "Joe", LastName = "Smith" };
             return Page();
         }
 
         [BindProperty]
         public Student Student { get; set; }
-        
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            _context.Student.Add(Student);
+            _context.Students.Add(Student);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
