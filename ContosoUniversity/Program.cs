@@ -35,7 +35,7 @@ using (var scope = app.Services.CreateScope())
     var services = scope.ServiceProvider;
 
     var context = services.GetRequiredService<SchoolContext>();
-    context.Database.EnsureCreated();
+    // context.Database.EnsureCreated();
     DbInitializer.Initialize(context);
 }
 #endregion
