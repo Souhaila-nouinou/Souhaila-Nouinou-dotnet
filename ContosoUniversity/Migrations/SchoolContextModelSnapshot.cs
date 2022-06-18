@@ -69,7 +69,7 @@ namespace ContosoUniversity.Migrations
 
                     b.HasIndex("InstructorID");
 
-                    b.ToTable("Department");
+                    b.ToTable("Departments");
                 });
 
             modelBuilder.Entity("ContosoUniversity.Models.Enrollment", b =>
@@ -95,7 +95,7 @@ namespace ContosoUniversity.Migrations
 
                     b.HasIndex("StudentID");
 
-                    b.ToTable("Enrollment", (string)null);
+                    b.ToTable("Enrollments");
                 });
 
             modelBuilder.Entity("ContosoUniversity.Models.Instructor", b =>
@@ -122,7 +122,7 @@ namespace ContosoUniversity.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Instructor");
+                    b.ToTable("Instructor", (string)null);
                 });
 
             modelBuilder.Entity("ContosoUniversity.Models.OfficeAssignment", b =>
@@ -136,7 +136,7 @@ namespace ContosoUniversity.Migrations
 
                     b.HasKey("InstructorID");
 
-                    b.ToTable("OfficeAssignment");
+                    b.ToTable("OfficeAssignments");
                 });
 
             modelBuilder.Entity("ContosoUniversity.Models.Student", b =>
