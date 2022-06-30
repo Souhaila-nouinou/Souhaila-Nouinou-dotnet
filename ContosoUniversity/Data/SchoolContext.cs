@@ -14,13 +14,15 @@ namespace ContosoUniversity.Data
         {
         }
 
-                public DbSet<Student> Students { get; set; }
+        public DbSet<Student> Students { get; set; }
         public DbSet<Enrollment> Enrollments { get; set; }
         public DbSet<Course> Courses { get; set; }
 
-                public DbSet<Department> Departments { get; set; }
+        public DbSet<Department> Departments { get; set; }
         public DbSet<Instructor> Instructors { get; set; }
         public DbSet<OfficeAssignment> OfficeAssignments { get; set; }
+
+        public DbSet<Stage> Stages { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -33,6 +35,11 @@ namespace ContosoUniversity.Data
                     modelBuilder.Entity<Department>()
             .Property(d => d.ConcurrencyToken)
             .IsConcurrencyToken();
+
+             modelBuilder.Entity<Stage>().ToTable("Stage");
         }
+
+
+        public DbSet<ContosoUniversity.Models.Stage> Stage { get; set; }
     }
 }

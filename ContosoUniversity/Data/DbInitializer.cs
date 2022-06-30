@@ -276,6 +276,24 @@ namespace ContosoUniversity.Data
 
             context.AddRange(enrollments);
             context.SaveChanges();
+
+
+
+             var mystage = new Stage[]
+            {
+                new Stage{StageID=111  , sujet = "un sujet" },
+              
+            };
+
+            context.Stages.AddRange(mystage);
+            context.SaveChanges();
+
+
+
+
+
+
+
         }
     }
 }
