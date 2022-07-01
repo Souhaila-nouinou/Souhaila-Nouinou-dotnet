@@ -23,10 +23,14 @@ namespace ContosoUniversity.Pages.Stages
 
         public async Task OnGetAsync()
         {
-            if (_context.Stages != null)
-            {
-                Stage = await _context.Stages.ToListAsync();
-            }
+   
+
+                Stage = await _context.Stages
+                .Include(e => e.Encadrant)
+                .AsNoTracking()
+                .ToListAsync();
+   
+
         }
     }
 }

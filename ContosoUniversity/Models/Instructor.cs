@@ -32,6 +32,7 @@ namespace ContosoUniversity.Models
         }
 
         public ICollection<Course> Courses { get; set; }
+        public ICollection<Stage> Stages { get; set; }
         public OfficeAssignment OfficeAssignment { get; set; }
     }
 }

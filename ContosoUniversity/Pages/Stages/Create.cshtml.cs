@@ -52,7 +52,7 @@ namespace ContosoUniversity.Pages.Stages
             if (await TryUpdateModelAsync<Stage>(
                  emptyStage,
                  "stage",   // Prefix for form value.
-                 s => s.StageID, s => s.EnseignantID, s=> s.Binome ,  s => s.sujet))
+                 s => s.StageID, s => s.EnseignantID, s=> s.Binome , s=>s.Encadrant  ,s => s.sujet))
             {
                 _context.Stages.Add(emptyStage);
                 await _context.SaveChangesAsync();
