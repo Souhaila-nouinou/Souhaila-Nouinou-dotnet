@@ -14,21 +14,55 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Stage.EnseignantID" class="control-label"></label>
-                <input asp-for="Stage.EnseignantID" class="form-control" />
-                <span asp-validation-for="Stage.EnseignantID" class="text-danger"></span>
+                <label asp-for="Stage.Stagiaire" class="control-label"></label>
+                <input asp-for="Stage.Stagiaire" class="form-control" />
+                <span asp-validation-for="Stage.Stagiaire" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Stage.SignatureValidation" class="control-label"></label>
-                <input asp-for="Stage.SignatureValidation" class="form-control" />
-                <span asp-validation-for="Stage.SignatureValidation" class="text-danger"></span>
+
+
+            <div>  
+            <br>           
+                <label for="adult">Vous avez un binome ? </label><br>
+
+                <input type="radio" name="type" value="customurl" 
+                onclick="document.getElementById('text').disabled = false">Non
+                <br>
+
+                <input type="radio" name="type" value="customurl" 
+                onclick="document.getElementById('text').disabled = true">Oui
+                 
+
+                <!-- <input type="text" id="text" name="custom" 
+                placeholder="should be 5 charecters at least" disabled> -->
+                <br><br>
+
+
+                
+            <label for="adult">Choisissez un binome </label>
+            <div asp-for="Stage.Student" class="form-group">
+                    <label  class="control-label"></label>
+                <select asp-for="Stage.Binome" class="form-control"  id="text"
+                   asp-items="@Model.StudentList" >
+                    <option value="">-- Select Binome --</option>
+                </select>
+                <span asp-validation-for="Stage.Binome" class="text-danger" />
             </div>
+
+            <br>
+
+            </div>
+
+          <br><br>
+
             <div class="form-group">
                 <label asp-for="Stage.sujet" class="control-label"></label>
                 <input asp-for="Stage.sujet" class="form-control" />
                 <span asp-validation-for="Stage.sujet" class="text-danger"></span>
             </div>
 
+            <br><br>
+
+            <label for="adult">Choisissez un encadrant </label>
             <div asp-for="Stage.Enseignant" class="form-group">
                     <label  class="control-label"></label>
                 <select asp-for="Stage.EnseignantID" class="form-control"
@@ -37,6 +71,8 @@
                 </select>
                 <span asp-validation-for="Stage.EnseignantID" class="text-danger" />
             </div>
+
+            <br><br>
 
 
 

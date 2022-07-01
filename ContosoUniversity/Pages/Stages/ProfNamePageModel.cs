@@ -20,6 +20,19 @@ namespace ContosoUniversity.Pages.Stages
             ProfList = new SelectList(profQuery.AsNoTracking(),
                         "ID", "LastName", selectedProf);
         }
+
+                public SelectList StudentList { get; set; }
+
+        public void PopulateStudentDropDownList(SchoolContext _context,
+            object selectedStudent = null)
+        {
+            var studentQuery = from d in _context.Students
+                                   orderby d.LastName // Sort by name.
+                                   select d;
+
+            StudentList = new SelectList(studentQuery.AsNoTracking(),
+                        "ID", "LastName", selectedStudent);
+        }
     }
  
 }

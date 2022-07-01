@@ -1,87 +1,75 @@
-using ContosoUniversity.Data;
-using ContosoUniversity.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+@page
+@model ContosoUniversity.Pages.Instructors.CreateModel
 
-namespace ContosoUniversity.Pages.Instructors
-{
-    public class CreateModel : InstructorCoursesPageModel
-    {
-        private readonly ContosoUniversity.Data.SchoolContext _context;
-        private readonly ILogger<InstructorCoursesPageModel> _logger;
+@{
+    ViewData["Title"] = "Create";
+}
 
-        public CreateModel(SchoolContext context,
-                          ILogger<InstructorCoursesPageModel> logger)
-        {
-            _context = context;
-            _logger = logger;
-        }
+<h2>Create</h2>
 
-        public IActionResult OnGet()
-        {
-            var instructor = new Instructor();
-            instructor.Courses = new List<Course>();
+<h4>Instructor</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Instructor.LastName" class="control-label"></label>
+                <input asp-for="Instructor.LastName" class="form-control" />
+                <span asp-validation-for="Instructor.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Instructor.FirstMidName" class="control-label"></label>
+                <input asp-for="Instructor.FirstMidName" class="form-control" />
+                <span asp-validation-for="Instructor.FirstMidName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Instructor.HireDate" class="control-label"></label>
+                <input asp-for="Instructor.HireDate" class="form-control" />
+                <span asp-validation-for="Instructor.HireDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Instructor.OfficeAssignment.Location" class="control-label"></label>
+                <input asp-for="Instructor.OfficeAssignment.Location" class="form-control" />
+                <span asp-validation-for="Instructor.OfficeAssignment.Location" class="text-danger" />
+            </div>
+            <div class="form-group">
+                <div class="table">
+                    <table>
+                        <tr>
+                            @{
+                                int cnt = 0;
 
-            // Provides an empty collection for the foreach loop
-            // foreach (var course in Model.AssignedCourseDataList)
-            // in the Create Razor page.
-            PopulateAssignedCourseData(_context, instructor);
-            return Page();
-        }
+                                foreach (var course in Model.AssignedCourseDataList)
+                                {
+                                    if (cnt++ % 3 == 0)
+                                    {
+                                        @:</tr><tr>
+                                    }
+                                    @:<td>
+                                        <input type="checkbox"
+                                               name="selectedCourses"
+                                               value="@course.CourseID"
+                                               @(Html.Raw(course.Assigned ? "checked=\"checked\"" : "")) />
+                                               @course.CourseID @:  @course.Title
+                                    @:</td>
+                                }
+                                @:</tr>
+                            }
+                    </table>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
 
-        [BindProperty]
-        public Instructor Instructor { get; set; }
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
 
-        public async Task<IActionResult> OnPostAsync(string[] selectedCourses)
-        {
-            var newInstructor = new Instructor();
-
-            if (selectedCourses.Length > 0)
-            {
-                newInstructor.Courses = new List<Course>();
-                // Load collection with one DB call.
-                _context.Courses.Load();
-            }
-
-            // Add selected Courses courses to the new instructor.
-            foreach (var course in selectedCourses)
-            {
-                var foundCourse = await _context.Courses.FindAsync(int.Parse(course));
-                if (foundCourse != null)
-                {
-                    newInstructor.Courses.Add(foundCourse);
-                }
-                else
-                {
-                    _logger.LogWarning("Course {course} not found", course);
-                }
-            }
-
-            try
-            {
-                if (await TryUpdateModelAsync<Instructor>(
-                                newInstructor,
-                                "Instructor",
-                                i => i.FirstMidName, i => i.LastName,
-                                i => i.HireDate, i => i.OfficeAssignment))
-                {
-                    _context.Instructors.Add(newInstructor);
-                    await _context.SaveChangesAsync();
-                    return RedirectToPage("./Index");
-                }
-                return RedirectToPage("./Index");
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex.Message);
-            }
-
-            PopulateAssignedCourseData(_context, newInstructor);
-            return Page();
-        }
-    }
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

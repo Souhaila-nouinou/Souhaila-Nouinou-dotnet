@@ -10,7 +10,7 @@ using ContosoUniversity.Models;
 
 namespace ContosoUniversity.Pages.Stages
 {
-    public class CreateModel : ProfNamePageModel
+    public class CreateModel : ProfNamePageModel 
     {
         private readonly ContosoUniversity.Data.SchoolContext _context;
 
@@ -23,6 +23,7 @@ namespace ContosoUniversity.Pages.Stages
         public IActionResult OnGet()
         {
             PopulateProfDropDownList(_context);
+            PopulateStudentDropDownList(_context);
             return Page();
         }
 
@@ -51,7 +52,7 @@ namespace ContosoUniversity.Pages.Stages
             if (await TryUpdateModelAsync<Stage>(
                  emptyStage,
                  "stage",   // Prefix for form value.
-                 s => s.StageID, s => s.EnseignantID, s => s.sujet))
+                 s => s.StageID, s => s.EnseignantID, s=> s.Binome ,  s => s.sujet))
             {
                 _context.Stages.Add(emptyStage);
                 await _context.SaveChangesAsync();
@@ -60,6 +61,7 @@ namespace ContosoUniversity.Pages.Stages
 
             // Select DepartmentID if TryUpdateModelAsync fails.
             PopulateProfDropDownList(_context, emptyStage.EnseignantID);
+            PopulateProfDropDownList(_context, emptyStage.Binome);
             return Page();
 //-----------------------
 
