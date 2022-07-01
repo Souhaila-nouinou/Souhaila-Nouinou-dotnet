@@ -28,6 +28,18 @@
                 <input asp-for="Stage.sujet" class="form-control" />
                 <span asp-validation-for="Stage.sujet" class="text-danger"></span>
             </div>
+
+            <div asp-for="Stage.Enseignant" class="form-group">
+                    <label  class="control-label"></label>
+                <select asp-for="Stage.EnseignantID" class="form-control"
+                   asp-items="@Model.ProfList" >
+                    <option value="">-- Select Prof --</option>
+                </select>
+                <span asp-validation-for="Stage.EnseignantID" class="text-danger" />
+            </div>
+
+
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

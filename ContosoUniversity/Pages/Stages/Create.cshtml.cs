@@ -10,17 +10,19 @@ using ContosoUniversity.Models;
 
 namespace ContosoUniversity.Pages.Stages
 {
-    public class CreateModel : PageModel
+    public class CreateModel : ProfNamePageModel
     {
         private readonly ContosoUniversity.Data.SchoolContext _context;
 
         public CreateModel(ContosoUniversity.Data.SchoolContext context)
         {
+            
             _context = context;
         }
 
         public IActionResult OnGet()
         {
+            PopulateProfDropDownList(_context);
             return Page();
         }
 
@@ -31,15 +33,41 @@ namespace ContosoUniversity.Pages.Stages
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid)
+        //   if (!ModelState.IsValid)
+        //     {
+        //         return Page();
+        //     }
+
+        //     _context.Stages.Add(Stage);
+        //     await _context.SaveChangesAsync();
+
+        //     return RedirectToPage("./Index");
+
+//-----------------
+
+
+            var emptyStage = new Stage();
+
+            if (await TryUpdateModelAsync<Stage>(
+                 emptyStage,
+                 "stage",   // Prefix for form value.
+                 s => s.StageID, s => s.EnseignantID, s => s.sujet))
             {
-                return Page();
+                _context.Stages.Add(emptyStage);
+                await _context.SaveChangesAsync();
+                return RedirectToPage("./Index");
             }
 
-            _context.Stages.Add(Stage);
-            await _context.SaveChangesAsync();
+            // Select DepartmentID if TryUpdateModelAsync fails.
+            PopulateProfDropDownList(_context, emptyStage.EnseignantID);
+            return Page();
+//-----------------------
 
-            return RedirectToPage("./Index");
+
+
+
         }
+
+
     }
 }

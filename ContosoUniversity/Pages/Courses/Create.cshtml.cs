@@ -48,5 +48,9 @@ namespace ContosoUniversity.Pages.Courses
             PopulateDepartmentsDropDownList(_context, emptyCourse.DepartmentID);
             return Page();
         }
+
+
+
+        
     }
 }
