@@ -20,10 +20,21 @@
                 <span asp-validation-for="Stage.EnseignantID" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Stage.SignatureValidation" class="control-label"></label>
-                <input asp-for="Stage.SignatureValidation" class="form-control" />
-                <span asp-validation-for="Stage.SignatureValidation" class="text-danger"></span>
+                 <label for="adult">Validé ? </label><br>
+                <!-- <input asp-for="Stage.SignatureValidation" class="form-control" />
+                <span asp-validation-for="Stage.SignatureValidation" class="text-danger"></span> -->
+
+                <input type="radio" name="type" value="customurl" 
+               >Non
+                <br>
+
+                <input type="radio" name="type" value="customurl" 
+                >Oui
             </div>
+
+
+
+
             <div class="form-group">
                 <label asp-for="Stage.sujet" class="control-label"></label>
                 <input asp-for="Stage.sujet" class="form-control" />
